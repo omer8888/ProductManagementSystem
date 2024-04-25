@@ -26,9 +26,10 @@
             <th>Name</th>
             <th>Brand</th>
             <th>Category</th>
+            <th>Description</th>
             <th>Price</th>
             <th>Image</th>
-            <th>Created At</th>
+            <th>CreatedAt</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -38,8 +39,9 @@
             <td th:text="${product.name}"></td>
             <td th:text="${product.brand}"></td>
             <td th:text="${product.category}"></td>
+            <td th:text="${product.description}"></td>
             <td th:text="@{${product.price} + ' ILS'}"></td>
-            <td> <img th:src="@{'images/'+${product.imageFileName}}" alt="..." width="100"> </td>
+            <td> <img th:src="@{'images/'+${product.imageFileName}}" alt="..." width="120"> </td>
             <td th:text="${product.createAt.toString().substring(0,10)}"></td>
             <td style="white-space:nowrap">
                 <a class="btn btn-warning btn-sm" th:href="@{products/edit(id=${product.id})}">Edit</a>

@@ -21,7 +21,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto rounded border p-4 m-4">
-            <h2 class="text-center mb-5">New Product</h2>
+            <h2 class="text-center mb-5">Create new Product</h2>
+
+
+<!--            Binding the Form to an Object: The th:object="${productDto}" attribute in the <form> tag-->
+<!--            tells Thymeleaf (a template engine) to bind the form fields to the properties of the productDto object.-->
+<!--            This means that whatever the user enters into the form fields-->
+<!--            will be automatically assigned to the corresponding properties of the productDto object when the form is submitted.-->
+
+<!--            Updating Object Properties: Let's say there's an input field for the product's name:-->
+<!--            <input class="form-control" th:field="${productDto.name}">.-->
+<!--            When the user fills in this input field with a name and submits the form,-->
+<!--            Thymeleaf automatically updates the name property of the productDto object with the value entered by the user.-->
+<!--            This happens because of the binding established by Thymeleaf using the th:field attribute.-->
+
+<!--            Sending the Object: When the user submits the form, the browser packages the form data (including the updated productDto object)-->
+<!--            into an HTTP request and sends it to the server. The server-side controller handling the request can then access this productDto object,-->
+<!--            which contains the user-submitted data, and perform actions like validation, processing, and saving the data to a database.-->
 
             <form method="post" enctype="multipart/form-data" th:object="${productDto}">
                 <div class="row mb-3">

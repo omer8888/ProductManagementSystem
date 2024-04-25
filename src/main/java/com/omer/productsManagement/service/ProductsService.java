@@ -26,10 +26,7 @@ public class ProductsService {
     @Autowired
     private ProductsRepository productsRepository;
 
-    public void verifyImage(ProductDto productDto, BindingResult result, boolean shouldSkip) {
-        if (shouldSkip) {
-            return;
-        }
+    public void verifyImage(ProductDto productDto, BindingResult result) {
         if (productDto.getImageFile().isEmpty()) {
             result.addError(new FieldError("productDto", "imageFile", "Image file is empty"));
         }
@@ -64,7 +61,7 @@ public class ProductsService {
         product.setBrand(productDto.getBrand());
         product.setCreateAt(new Date());
         product.setImageFileName(storageFileName);
-        save(product);
+        this.save(product);
     }
 
     private void save(Product product) {
@@ -91,24 +88,20 @@ public class ProductsService {
             product.setCreateAt(new Date());
 
             MultipartFile imageFile = productDto.getImageFile();
-            if (imageFile != null) {
+            if (!imageFile.isEmpty()) {
                 String imagePath = uploadImage(productDto);
                 product.setImageFileName(imagePath);
+            }
+            else{
+                product.setImageFileName(product.getImageFileName());
             }
 
             save(product);
         }
     }
 
-    public List<Product> getAllProducts(boolean isSorted) {
-        if (isSorted) {
-            return productsRepository.findAll(Sort.by(Sort.Direction.DESC, "createAt"));
-        }
-        return productsRepository.findAll();
-    }
-
     public List<Product> getAllProducts() {
-        return getAllProducts(false);
+        return productsRepository.findAll();
     }
 
     public Optional<Product> getProductById(int id) {

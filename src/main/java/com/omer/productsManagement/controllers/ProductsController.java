@@ -35,7 +35,7 @@ public class ProductsController {
 
     @PostMapping("/create")
     public String createProduct(@Valid @ModelAttribute ProductDto productDto, BindingResult result) {
-        productsService.verifyImage(productDto, result, false);
+        productsService.verifyImage(productDto, result);
         if (result.hasErrors()) {
             return "products/createProduct";
         }
