@@ -71,7 +71,7 @@ public class ProductsService {
     public void uploadNewProduct(ProductDto productDto) {
         String storageFileName = uploadImage(productDto);
         if (storageFileName != null) {
-            saveProduct(storageFileName, productDto);
+            this.saveProduct(storageFileName, productDto);
         }
     }
 
@@ -96,7 +96,7 @@ public class ProductsService {
                 product.setImageFileName(product.getImageFileName());
             }
 
-            save(product);
+            this.save(product);
         }
     }
 
